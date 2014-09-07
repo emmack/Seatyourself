@@ -1,0 +1,56 @@
+<h1> Profile </h1>
+
+
+<div class="profile">
+    <%if current_user%>
+
+        <%if current_user.kind == "user"%>
+
+        
+            <h2> <%= @restaurant.name %> </h2><br>
+            <div class ="profile_info">
+            <div class = "subject"> Name:</div>  <%= @restaurant.name %> <br>
+            <div class = "subject"> Category:</div>  <%= @restaurant.category.name %> <br>
+            <div class = "subject"> Email:</div>  <%= @restaurant.email %> <br>
+            <div class = "subject"> Location:</div>  <%= @restaurant.location %> <br>
+            <div class = "subject"> Size:</div>  <%= @restaurant.size %> <br>
+            <%= link_to "Book", new_restaurant_booking_path(@restaurant) %> 
+            <div class ="profile_img">
+             <div class = "subject"> Image: </div> <img src= "<%= @restaurant.avatar %>"> 
+             </div>
+
+            <div class = "subject"> Book:</div>  <%= @restaurant.size %> <br>
+    
+        <% else current_user.kind != "restaurant"%>
+    
+            <%= link_to "Edit", edit_restaurant_path(@restaurant) %>
+            <div class ="profile_info"> 
+            
+                <div class = "subject"> Email:</div>  <%= current_user.email %> <br>
+                <div class = "subject"> Location:</div>  <%= current_user.location %> <br>
+                <div class = "subject"> Size:</div>  <%= current_user.size %> <br>
+            </div>
+
+           	<div class ="profile_img">
+                <div class = "subject"> Image: </div> <img src= "<%= current_user.avatar %>"> 
+           	</div>
+            
+            <p>Bookings for <%= @restaurant.name %></p>
+
+            <% @restaurant.bookings.order("created_at desc").each do |booking| %>
+                <% if booking.user != nil %>
+                    <p> Booking for: <%= booking.user.name %></p>
+                    <p> Email: <%= booking.user.email %></p>
+                <% end %>
+                <div class = "subject"> Date:</div> <%= booking.date %> 
+                <div class = "subject"> Time:</div> <%= booking.time %> 
+                <div class = "subject"> Size:</div>  <%= booking.size %>
+                
+    
+            <%end%>
+
+        <%end%>
+    <%end%>
+
+
+</div>

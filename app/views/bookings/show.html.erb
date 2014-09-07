@@ -1,0 +1,28 @@
+<% if current_user %>
+	<%if current_user.kind != "user"%>
+		<h2> My Bookings </h2>
+		<% @bookings.user.each do |booking| %>
+  			<% if @booking.user != nil %>
+       			<p> Booking for: <%= booking.user.name %></p>
+  				<p> Email: <%= booking.user.email %></p>
+				<div class = "subject"> Date:</div> <%= booking.user.date %> 
+			    <div class = "subject"> Time:</div> <%= booking.user.time %> 
+			    <div class = "subject"> Size:</div>  <%= booking.user.size %>
+    		<%end%>
+    	<%end%>
+    <%end%>
+
+    <% else current_user.kind == "user"%>
+		<h2> My Bookings </h2>
+		<% @restaurant.bookings.order("created_at desc").each do |booking| %>
+       		<p> Booking for: <%= booking.name %></p>
+  			<p> Email: <%= booking.email %></p>
+			<div class = "subject"> Date:</div> <%=booking.date %> 
+			<div class = "subject"> Time:</div> <%= booking.time %> 
+			<div class = "subject"> Size:</div>  <%= booking.size %>
+    	<%end%>
+    <%end%>
+
+<%end%>
+
+

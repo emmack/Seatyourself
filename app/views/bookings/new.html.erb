@@ -1,0 +1,22 @@
+<h1>Book a Table</h1>
+<% if current_user %>
+    <%= form_for ([@restaurant, @booking]) do |f| %>
+    
+        <div class="field">
+            <%= f.label :date %>
+            <%= f.date_select :date %>
+        </div>
+        <div class="field">
+            <%= f.label :time %>
+            <%= f.time_select :time, {ampm: true, minute_step: 30} %>
+        </div>
+        <div class="field">
+            <%= f.label :size %>
+            <%= f.text_field :size %>
+        </div>
+        <%= f.submit %>
+    <% end %>
+
+<% else %>
+  <p>Please <%= link_to "log in", new_session_path %> to add a review.</p> 
+<% end %>
