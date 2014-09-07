@@ -1,8 +1,9 @@
 <% if current_user %>
-		<%if current_user.kind !="restaurant"%>
+	
 		<h2> My Bookings </h2>
 		<% @bookings.each do |booking| %>
   			<% if booking.user != nil %>
+  			<p>Restaurant: <%=booking.restaurant.name%></p>
        			<p> Booking for: <%= booking.user.name %></p>
   				<p> Email: <%= booking.user.email %></p>
 				<div class = "subject"> Date:</div> <%= booking.date %> 
@@ -10,12 +11,11 @@
 			    <div class = "subject"> Size:</div>  <%= booking.size %>
 			    <%= link_to "Delete", booking, :method => :delete %>
     		<%end%>
+  
+
+
+
     	<%end%>
-   
-
-<%end%>
-   
-
-<%end%>
+    		<%end%>
 
 

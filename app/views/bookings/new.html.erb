@@ -1,7 +1,8 @@
 <h1>Book a Table</h1>
 <% if current_user %>
     <%= form_for ([@restaurant, @booking]) do |f| %>
-    
+  
+
         <div class="field">
             <%= f.label :date %>
             <%= f.date_select :date %>

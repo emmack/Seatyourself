@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
 
 def index
 	@bookings = Booking.all
+
 end
 
     def new
@@ -13,7 +14,9 @@ end
 		@restaurant = Restaurant.find(params[:restaurant_id])
 		@booking = @restaurant.bookings.build(booking_params)
 			@booking.user = current_user
+			@restaurant_booking = @restaurant.name
 			if @booking.save
+				@restaurant_booking = @restaurant_name
 				redirect_to user_bookings_path(@booking), notice: 'Table booked successfully!'
 			else
 				
@@ -44,8 +47,11 @@ end
 
 	private
   	def booking_params
-  	 	params.require(:booking).permit(:user_id, :size, :time, :date, :restaurant_id)
+  	 	params.require(:booking).permit(:user_id, :size, :time, :date, :restaurant_id, :restaurant_name)
   	 end
+
+  	
+
 
   
 

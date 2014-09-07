@@ -21,7 +21,7 @@
 
             <div class = "subject"> Book:</div>  <%= @restaurant.size %> <br>
     
-        <% else current_user.kind != "restaurant"%>
+        <% else current_user.kind == "restaurant"%>
     
             <%= link_to "Edit", edit_restaurant_path(@restaurant) %>
             <div class ="profile_info"> 
