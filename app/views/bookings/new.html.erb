@@ -1,7 +1,17 @@
 <h1>Book a Table</h1>
 <% if current_user %>
     <%= form_for ([@restaurant, @booking]) do |f| %>
-  
+  <% if @booking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@booking.errors.count, "error") %> booking could not be made:</h2>
+
+     
+      <% @booking.errors.full_messages.each do |msg| %>
+        <%= msg %>
+      <% end %>
+     
+    </div>
+  <% end %>
 
         <div class="field">
             <%= f.label :date %>
