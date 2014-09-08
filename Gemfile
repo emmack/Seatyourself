@@ -41,6 +41,7 @@ gem "quiet_assets"
 gem "pry"
 gem 'carrierwave'
 gem 'bcrypt-ruby', :require => 'bcrypt'
+gem 'geocoder'
 
 
 group :development, :test do

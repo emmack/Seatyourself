@@ -9,26 +9,31 @@
 <body>
 <div id="headwrapper">
 
-        <p class="userinfo">
+<img class ="logo" src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-xpa1/v/t1.0-9/10418278_10152619923250342_3040869094789336455_n.jpg?oh=8bd0d3b1f2cac903a8d1821152be031e&oe=5489A2EB&__gda__=1420014845_6574f7936320a8f513e436487eaa600e">
+
+<div class="title">
+Seat Yo' Self
+</div>
+        <div class="userinfo">
+
 
             <% if current_user %>
-                Signed in as <%= current_user.email %>. | <%= link_to "Profile", current_user %> | <%= link_to "My Bookings", restaurant_bookings_path(current_user) %>  | <%= link_to "Log out", session_path('current'), :method => :delete %>
+                Signed in as <%= current_user.email %>. | <%= link_to "Profile", current_user %> | <%= link_to "My Bookings", user_bookings_path(current_user) %>  | <%= link_to "Log out", session_path('current'), :method => :delete %>
             <% else %>
                 <%= link_to "Log in", new_session_path %> or <%= link_to "Sign up", signup_path %>
             <% end %>
-        </p>
-
-    
+        </div>
 
 
         <div id="header">
-            <h1> Seat Yourself</h1>
+            
             <div class ="nav">
-                <%= link_to "Home", "/" %>   <%= link_to "Categories", categories_path %> 
+                <%= link_to "HOME", "/" %>   <%= link_to "RESTAURANTS", categories_path %> 
                 
             </div>
         </div>
     </div>
+
 
 
 <% if notice %>

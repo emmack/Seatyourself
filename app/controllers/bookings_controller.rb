@@ -10,13 +10,13 @@ end
     	@restaurant = Restaurant.find(params[:restaurant_id])
     	@booking = Booking.new
     end
+
+
 	def create
 		@restaurant = Restaurant.find(params[:restaurant_id])
 		@booking = @restaurant.bookings.build(booking_params)
 			@booking.user = current_user
-			@restaurant_booking = @restaurant.name
 			if @booking.save
-				@restaurant_booking = @restaurant_name
 				redirect_to user_bookings_path(@booking), notice: 'Table booked successfully!'
 			else
 				
@@ -24,6 +24,7 @@ end
 			end
 	end
 
+	
 
 	
 	def update 
@@ -47,7 +48,7 @@ end
 
 	private
   	def booking_params
-  	 	params.require(:booking).permit(:user_id, :size, :time, :date, :restaurant_id, :restaurant_name)
+  	 	params.require(:booking).permit(:user_id, :party_size, :star_time, :date, :restaurant_id, :restaurant_name)
   	 end
 
   	

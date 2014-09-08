@@ -13,13 +13,13 @@
             <div class = "subject"> Category:</div>  <%= @restaurant.category.name %> <br>
             <div class = "subject"> Email:</div>  <%= @restaurant.email %> <br>
             <div class = "subject"> Location:</div>  <%= @restaurant.location %> <br>
-            <div class = "subject"> Size:</div>  <%= @restaurant.size %> <br>
+            <div class = "subject"> Size:</div>  <%= @restaurant.capacity %> <br>
             <%= link_to "Book", new_restaurant_booking_path(@restaurant) %> 
             <div class ="profile_img">
              <div class = "subject"> Image: </div> <img src= "<%= @restaurant.avatar %>"> 
              </div>
 
-            <div class = "subject"> Book:</div>  <%= @restaurant.size %> <br>
+            <div class = "subject"> Book:</div>  <%= @restaurant.capacity %> <br>
     
         <% else current_user.kind != "restaurant"%>
     
@@ -28,7 +28,7 @@
             
                 <div class = "subject"> Email:</div>  <%= current_user.email %> <br>
                 <div class = "subject"> Location:</div>  <%= current_user.location %> <br>
-                <div class = "subject"> Size:</div>  <%= current_user.size %> <br>
+                <div class = "subject"> Size:</div>  <%= current_user.capacity %> <br>
             </div>
 
            	<div class ="profile_img">
@@ -43,8 +43,8 @@
                     <p> Email: <%= booking.user.email %></p>
                 <% end %>
                 <div class = "subject"> Date:</div> <%= booking.date %> 
-                <div class = "subject"> Time:</div> <%= booking.time %> 
-                <div class = "subject"> Size:</div>  <%= booking.size %>
+                <div class = "subject"> Time:</div> <%= booking.start_time %> 
+                <div class = "subject"> Size:</div>  <%= booking.party_size %>
                 
     
             <%end%>

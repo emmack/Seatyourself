@@ -7,8 +7,8 @@
        			<p> Booking for: <%= booking.user.name %></p>
   				<p> Email: <%= booking.user.email %></p>
 				<div class = "subject"> Date:</div> <%= booking.date %> 
-			    <div class = "subject"> Time:</div> <%= booking.time %> 
-			    <div class = "subject"> Size:</div>  <%= booking.size %>
+			    <div class = "subject"> Time:</div> <%= booking.start_time %> 
+			    <div class = "subject"> Size:</div>  <%= booking.party_size %>
 			    <%= link_to "Delete", booking, :method => :delete %>
     		<%end%>
   

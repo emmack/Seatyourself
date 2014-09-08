@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140907185226) do
+ActiveRecord::Schema.define(version: 20140908152122) do
 
   create_table "bookings", force: true do |t|
     t.integer  "user_id"
     t.integer  "restaurant_id"
-    t.integer  "size"
-    t.time     "time"
+    t.integer  "party_size"
+    t.time     "start_time"
     t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20140907185226) do
     t.string   "password_digest"
     t.text     "location"
     t.integer  "category_id"
-    t.integer  "size"
+    t.integer  "capacity"
     t.string   "avatar"
     t.datetime "created_at"
     t.datetime "updated_at"
