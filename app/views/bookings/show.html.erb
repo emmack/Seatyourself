@@ -1,5 +1,4 @@
 <% if current_user %>
-	<%if @booking.restaurant != nil%>
 		<h2> My Bookings </h2>
 		<% @bookings.user.each do |booking| %>
   			<% if @booking.user != nil %>
@@ -10,18 +9,16 @@
 			    <div class = "subject"> Size:</div>  <%= booking.user.party_size %>
     		<%end%>
     	<%end%>
-    <%end%>
 
-    <% else %>
+<% else current_restaurant %>
 		<h2> My Bookings </h2>
-		<% @bookings.user.each do |booking| %> %>
+		<% @restaurant.bookings.order("created_at desc").each do |booking| %>
        		<p> Booking for: <%= booking.name %></p>
   			<p> Email: <%= booking.email %></p>
 			<div class = "subject"> Date:</div> <%=booking.date %> 
 			<div class = "subject"> Time:</div> <%= booking.start_time %> 
 			<div class = "subject"> Size:</div>  <%= booking.party_size %>
     	<%end%>
-    <%end%>
 
 <%end%>
 

@@ -4,53 +4,41 @@
 <div class="profile">
     <%if current_user%>
 
-        <%if current_user.kind != "user"%>
-
         
             <h2> <%= @restaurant.name %> </h2><br>
             <div class ="profile_info">
             <div class = "subject"> Name:</div>  <%= @restaurant.name %> <br>
             <div class = "subject"> Category:</div>  <%= @restaurant.category.name %> <br>
             <div class = "subject"> Email:</div>  <%= @restaurant.email %> <br>
-            <div class = "subject"> Location:</div>  <%= @restaurant.location %> <br>
+            <div class = "subject"> Location:</div>  <%= @restaurant.address %> <br>
             <div class = "subject"> Size:</div>  <%= @restaurant.capacity %> <br>
             <%= link_to "Book", new_restaurant_booking_path(@restaurant) %> 
             <div class ="profile_img">
              <div class = "subject"> Image: </div> <img src= "<%= @restaurant.avatar %>"> 
              </div>
 
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@restaurant.latitude}%2C#{@restaurant.longitude}" %>
+
             <div class = "subject"> Book:</div>  <%= @restaurant.capacity %> <br>
+
+        
     
-        <% else current_user.kind != "restaurant"%>
+    <% else current_restaurant%>
     
             <%= link_to "Edit", edit_restaurant_path(@restaurant) %>
             <div class ="profile_info"> 
             
-                <div class = "subject"> Email:</div>  <%= current_user.email %> <br>
-                <div class = "subject"> Location:</div>  <%= current_user.location %> <br>
-                <div class = "subject"> Size:</div>  <%= current_user.capacity %> <br>
+                <div class = "subject"> Email:</div>  <%= current_restaurant.email %> <br>
+                <div class = "subject"> Location:</div>  <%= current_restaurant.address %> <br>
+                <div class = "subject"> Size:</div>  <%= current_restaurant.capacity %> <br>
             </div>
 
+
            	<div class ="profile_img">
-                <div class = "subject"> Image: </div> <img src= "<%= current_user.avatar %>"> 
+                <div class = "subject"> Image: </div> <img src= "<%= current_restaurant.avatar %>"> 
            	</div>
-            
-            <p>Bookings for <%= @restaurant.name %></p>
 
-            <% @restaurant.bookings.order("created_at desc").each do |booking| %>
-                <% if booking.user != nil %>
-                    <p> Booking for: <%= booking.user.name %></p>
-                    <p> Email: <%= booking.user.email %></p>
-                <% end %>
-                <div class = "subject"> Date:</div> <%= booking.date %> 
-                <div class = "subject"> Time:</div> <%= booking.start_time %> 
-                <div class = "subject"> Size:</div>  <%= booking.party_size %>
-                
-    
-            <%end%>
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@current_restaurant.latitude}%2C#{@current_restaurant.longitude}" %>
 
-        <%end%>
-    <%end%>
-
-
+<%end%>
 </div>

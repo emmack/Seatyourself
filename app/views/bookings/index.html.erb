@@ -16,6 +16,18 @@
 
 
     	<%end%>
-    		<%end%>
+   <%else current_restaurant%>
+   <p>Bookings for <%= @restaurant.name %></p>
+
+            <% @restaurant.bookings.order("created_at desc").each do |booking| %>
+                <% if booking.user != nil %>
+                    <p> Booking for: <%= booking.user.name %></p>
+                    <p> Email: <%= booking.user.email %></p>
+                <% end %>
+                <div class = "subject"> Date:</div> <%= booking.date %> 
+                <div class = "subject"> Time:</div> <%= booking.start_time %> 
+                <div class = "subject"> Size:</div>  <%= booking.party_size %>
+            <%end%>
+    <%end%>
 
 

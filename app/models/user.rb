@@ -5,4 +5,6 @@ class User < ActiveRecord::Base
 	has_secure_password
 	has_many :bookings
 	has_many :restaurants, through: :bookings 
+	geocoded_by :ip_address
+	after_validation :geocode, :if => :ip_address_changed?
 end

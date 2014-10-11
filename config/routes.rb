@@ -2,10 +2,10 @@ Rails.application.routes.draw do
     resources :users
   resources :restaurants 
    match 'signup', to: 'users#signup', via: [:get, :post]
-  root :to => "users#index"
+  root :to => "locations#index"
   resources :sessions, only: [:new, :create, :destroy]
   resources :bookings
-
+  resources :locations
   resources :restaurants do
   resources :bookings
   end

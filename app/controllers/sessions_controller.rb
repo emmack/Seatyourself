@@ -5,7 +5,8 @@ class SessionsController < ApplicationController
     def create
 
         user = User.find_by_email(params[:email]) 
-        if user != nil
+        restaurant = Restaurant.find_by_email(params[:email]) 
+        if user != nil && restaurant ==nil
         	if user && user.authenticate(params[:password])
             	session[:user_id] = user.id
             	redirect_to root_path, :notice => "Logged in!"
@@ -13,14 +14,13 @@ class SessionsController < ApplicationController
             	flash.now[:alert] = "Invalid email or password"
             	render "new"
         	end
-        else 
-        	user = Restaurant.find_by_email(params[:email]) 
-        	if user && user.authenticate(params[:password])
-            	session[:restaurant_id] = user.id
-            	redirect_to root_path, :notice => "Logged in!"
+        else restaurant !=nil && user == nil
+        	if restaurant && restaurant.authenticate(params[:password])
+                session[:restaurant_id] = restaurant.id
+                redirect_to root_path, :notice => "Logged in!"
        	 	else
-            	flash.now[:alert] = "Invalid email or password"
-            	render "new"
+                flash.now[:alert] = "Invalid email or password"
+                render "new"
         	end
         end
     end

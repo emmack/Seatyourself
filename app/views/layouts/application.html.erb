@@ -19,20 +19,35 @@ Seat Yo' Self
 
             <% if current_user %>
                 Signed in as <%= current_user.email %>. | <%= link_to "Profile", current_user %> | <%= link_to "My Bookings", user_bookings_path(current_user) %>  | <%= link_to "Log out", session_path('current'), :method => :delete %>
+            
+            <% elsif current_restaurant %>
+            Signed in as <%= current_restaurant.email %>. | <%= link_to "Profile", current_restaurant %> | <%= link_to "My Bookings", restaurant_bookings_path(current_restaurant) %>  | <%= link_to "Log out", session_path('current'), :method => :delete %>
             <% else %>
                 <%= link_to "Log in", new_session_path %> or <%= link_to "Sign up", signup_path %>
             <% end %>
         </div>
-
-
-        <div id="header">
             
             <div class ="nav">
                 <%= link_to "HOME", "/" %>   <%= link_to "RESTAURANTS", categories_path %> 
-                
             </div>
-        </div>
+   
+        <%= form_tag restaurants_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search Nearby", :name => nil %>
+  </p>
+<% end %>
+
+  <%= form_tag users_path, :method => :get do %>
+  <p>
+    <%= submit_tag "Or by current location", :name => nil %>
+  </p>
+<% end %>
     </div>
+
+
+
+
 
 
 

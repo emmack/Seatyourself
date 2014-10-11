@@ -6,5 +6,11 @@ def index
 
 	def show
   		@category = Category.find(params[:id])
+  		
+  		if params[:search].present?
+			@locations = Location.near(params[:search], 50, :order => :distance)
+		else
+			@locations = Location.all
+		end
  	end
 end

@@ -6,16 +6,24 @@ class RestaurantsController < ApplicationController
 	def create
 		@restaurant= Restaurant.new(restaurant_params)
 			if @restaurant.save
-				redirect_to restaurant_path(@restaurant)
+				redirect_to root_path
 			else
 				render :new
 			end
 	end
 
+def index
+
+  if params[:search].present?
+    @locations = Restaurant.near(params[:search], 15, :order => "distance ASC", :units => "km")
+  else
+    @locations = Restaurant.all
+  end
+end
 
 	def show
 		@restaurant = Restaurant.find(params[:id])
-		if current_user
+		if current_restaurant
             @booking = @restaurant.bookings.build
         end
 	end
@@ -35,6 +43,6 @@ class RestaurantsController < ApplicationController
 
 	private
   	def restaurant_params
-  	 	params.require(:restaurant).permit( :email, :password, :password_confirmation, :name, :avatar, :location, :avatar, :category_id, :capacity)
+  	 	params.require(:restaurant).permit( :email, :password, :password_confirmation, :name, :avatar, :address, :avatar, :category_id, :capacity)
   	end
 end

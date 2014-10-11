@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 def index
+  if params[:search].present?
+    @locations = Restaurant.near(params[:search], 10, :order => "distance ASC", :units => "km")
+  else
+    @locations = Restaurant.all
+  end
 	end
 
 	def new
